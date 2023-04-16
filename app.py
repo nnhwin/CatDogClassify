@@ -40,7 +40,7 @@ if image_file is not None:
     image = Image.open(image_file)
     st.image(image, caption='Input Image')
 
-    image = image.resize((150,150),Image.ANTIALIAS)
+    image = image.resize(150,150)
     img_array = np.array(image)
     
     x = np.expand_dims(img_array, axis=0)
