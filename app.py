@@ -34,7 +34,6 @@ st.markdown('You can find the Convolutional Neural Netowrk used [here](https://g
 
 st.subheader('Classify the image')
 image_file = st.file_uploader('Choose the Image', ['jpg', 'png'])
-print("here")
 print(image_file)
 if image_file is not None:
     
@@ -56,3 +55,4 @@ if image_file is not None:
     else:
         prediction = 'Cat'
     st.write(f'The image is predicted as {prediction}')
+
