@@ -49,7 +49,7 @@ if image_file is not None:
     print("here3")
     model=get_best_model()
     classes = model.predict(images, batch_size=10)
-     if classes>0.5:
+    if classes>0.5:
         prediction = 'Dog'
     else:
         prediction = 'Cat'
