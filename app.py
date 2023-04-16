@@ -23,7 +23,7 @@ st.markdown("""
 
 @st.cache(allow_output_mutation=True)
 def get_best_model():
-    model = keras.models.load_model('animal_model.h5')
+    model = keras.models.load_model('animal_model.h5',compile=False)
 
     model.make_predict_function()          # Necessary
     print('Model loaded. Start serving...')
