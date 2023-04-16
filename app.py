@@ -23,7 +23,7 @@ st.markdown("""
 
 @st.cache(allow_output_mutation=True)
 def get_best_model():
-    model = keras.models.load_model('animal_model.h5')
+    model = keras.models.load_model('animal_model.h5',compile=False)
 
     model.make_predict_function()          # Necessary
     print('Model loaded. Start serving...')
@@ -34,11 +34,19 @@ st.markdown('You can find the Convolutional Neural Netowrk used [here](https://g
 
 st.subheader('Classify the image')
 image_file = st.file_uploader('Choose the Image', ['jpg', 'png'])
-
+print(image_file)
 if image_file is not None:
-    x = image.img_to_array(image_file)
-    x = np.expand_dims(x, axis=0)
+    
+    image = Image.open(image_file)
+    st.image(image, caption='Input Image')
+
+    image = image.resize((150,150),Image.ANTIALIAS)
+    img_array = np.array(image)
+    
+    x = np.expand_dims(img_array, axis=0)
+    print("here2")
     images = np.vstack([x])
+    print("here3")
     model=get_best_model()
     classes = model.predict(images, batch_size=10)
     print(classes)
@@ -48,5 +56,3 @@ if image_file is not None:
         prediction = 'Cat'
     st.write(f'The image is predicted as {prediction}')
 
-st.subheader('Classify the image as Cat or Dog')
-sentence_image_files = st.file_uploader('Select the Images', ['jpg', 'png'], accept_multiple_files = True)
